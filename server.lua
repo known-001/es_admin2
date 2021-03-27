@@ -111,7 +111,7 @@ RegisterCommand('printidentifiers', function(source, args)
 				["title"] = "**The Player ".. name .."'s Identifiers have been printed**",
 				["description"] = identifiers.steam.. "\n\n"..identifiers.license.."\n\n"..identifiers.xbl.."\n\n"..identifiers.live.."\n\n"..identifiers.discord,
 				["footer"] = {
-					["text"] = "Made By Known | For Oasis RP",
+					["text"] = "Made By Known",
 				},
 			}
 		}
@@ -134,7 +134,7 @@ AddEventHandler('orp:admin:kick', function(user, msg, name)
 			["title"] = "**The Player ".. name .." Has Been Kicked**",
 			["description"] = "Kick Reason: **"..msg.."\n\nSteam Hex: "..playerHex.."**",
 			["footer"] = {
-				["text"] = "Made By Known | For Oasis RP",
+				["text"] = "Made By Known",
 			},
 		}
 	}
@@ -181,7 +181,7 @@ AddEventHandler('orp:admin:ban', function(name, reason, user, time)
 			["title"] = "**The Player ".. user .." Has Been Banned**",
 			["description"] = "Ban Reason: "..reason.."\n\nBan Expire: "..banexpire.."\n\nSteam: "..playerHex,
 			["footer"] = {
-				["text"] = "Made By Known | For Oasis RP",
+				["text"] = "Made By Known",
 			},
 		}
 	}
@@ -808,7 +808,7 @@ AddEventHandler('orp:admin:blcar', function(name, reason)
 			["title"] = "**The Player ".. name .." Has Spawned A Blacklisted Vehicle**",
 			["description"] = "Car Spawn Code: "..reason.."\n\nSteam: "..playerHex,
 			["footer"] = {
-				["text"] = "Made By Known | For Oasis RP",
+				["text"] = "Made By Known",
 			},
 		}
 	}
@@ -827,7 +827,7 @@ AddEventHandler('orp:admin:blweapon', function(name, reason)
 			["title"] = "**The Player ".. name .." Has A Blacklisted Weapon**",
 			["description"] = "Weapon Code: "..reason.."\n\nSteam: "..playerHex,
 			["footer"] = {
-				["text"] = "Made By Known | For Oasis RP",
+				["text"] = "Made By Known",
 			},
 		}
 	}
