@@ -48,6 +48,13 @@ Working forced screenshots useing included webhook
 ```
 ![sdfsdfd](https://user-images.githubusercontent.com/79784162/112715601-49417f80-8f35-11eb-9a49-bb0512352112.PNG)
 
+## Dependices
+
+```
+You need to use my custom noclip for the noclip to work.
+```
+
+https://github.com/known-001/Noclip
 
 
 
