@@ -23,8 +23,32 @@ git clone https://github.com/ESX-Org/esx_policejob [Admin]/esx_policejob
 - Add this to your server.cfg:
 
 ```
-start esx_policejob
+start es_admin2
 ```
+
+## Showcase
+- Video https://youtu.be/QQHSKGB_x54
+
+## Features
+
+```
+Go on duty as a admin by clicking the blip on the panel
+```
+
+```
+All the other features require you to be onduty to do the action
+```
+
+```
+Using included noclip press F7 to fly around
+```
+
+```
+Working forced screenshots useing included webhook
+```
+
+
+
 
 
 ## License
