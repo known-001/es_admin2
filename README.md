@@ -15,7 +15,7 @@ git clone https://github.com/ESX-Org/esx_policejob [Admin]/esx_policejob
 ```
 
 ### Manually
-- Download https://github.com/ESX-Org/esx_policejob/archive/master.zip
+- Download https://github.com/known-001/es_admin2
 - Put it in the `[Admin]` directory
 
 
