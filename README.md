@@ -11,7 +11,7 @@ fvm install --save --folder=Admin known-001/es_admin2
 ### Using Git
 ```
 cd resources
-git clone https://github.com/ESX-Org/esx_policejob [Admin]/esx_policejob
+git clone https://github.com/known-001/es_admin2 [Admin]/es_admin2
 ```
 
 ### Manually
