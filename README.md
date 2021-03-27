@@ -5,7 +5,7 @@ A updated and better version of es_admin2
 
 ### Using [fvm](https://github.com/qlaffont/fvm-installer)
 ```
-fvm install --save --folder=esx esx-org/esx_policejob
+fvm install --save --folder=Admin known-001/es_admin2
 ```
 
 ### Using Git
