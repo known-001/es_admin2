@@ -1,0 +1,23 @@
+resource_manifest_version '44febabe-d386-4d18-afbe-5e627f4af937'
+
+description 'Admin tool for ES'
+
+client_scripts {
+	'client.lua',
+	'config.lua'
+}
+
+server_scripts {
+	'server.lua',
+	'config.lua'
+}
+
+ui_page 'ui/index.html'
+
+files {
+	'ui/index.html',
+	'ui/style.css'
+}
+
+dependency 'essentialmode'
+client_script "@Badger-Anticheat/acloader.lua"
