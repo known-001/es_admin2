@@ -27,8 +27,8 @@ end)
 
 RegisterKeyMapping("adminpanel", "Admin Menu", "keyboard", 'INSERT')
 
-RegisterNetEvent('orp:admin:AdminPlayerList')
-AddEventHandler('orp:admin:AdminPlayerList', function(names, ids)
+RegisterNetEvent('es_admin:AdminPlayerList')
+AddEventHandler('es_admin:AdminPlayerList', function(names, ids)
     idPlayers = ids
     namePlayers = names
 	table.insert(players, {id = idPlayers, name = namePlayers})
@@ -37,15 +37,15 @@ end)
 
 RegisterCommand("adminpanel",function()
 	if group ~= "user" then
-		TriggerServerEvent('orp:admin:AdminPlayerList') -- populates table
+		TriggerServerEvent('es_admin:AdminPlayerList') -- populates table
 		Citizen.Wait(1000)
 	   SetNuiFocus(true, true)
 	   SendNUIMessage({type = 'open', players = players})
 	end
 end,false)
 
-RegisterNetEvent('orp:admin:setGroup')
-AddEventHandler('orp:admin:setGroup', function(g)
+RegisterNetEvent('es_admin:setGroup')
+AddEventHandler('es_admin:setGroup', function(g)
 	group = g
 end)
 
@@ -85,11 +85,11 @@ RegisterNUICallback('close', function(data, cb)
 end)
 
 RegisterCommand('load_group', function(source)
-	TriggerEvent('orp:admin:setGroup')
+	TriggerEvent('es_admin:setGroup')
 end)
 
 RegisterNUICallback('set', function(data, cb)
-	TriggerServerEvent('orp:admin:set', data.type, data.user, data.param)
+	TriggerServerEvent('es_admin:set', data.type, data.user, data.param)
 end)
 
 RegisterNUICallback('kick', function(data, cb)
@@ -102,7 +102,7 @@ RegisterNUICallback('kick', function(data, cb)
 
 		local name = GetPlayerName(player)
 
-		TriggerServerEvent('orp:admin:kick', user, msg, name)
+		TriggerServerEvent('es_admin:kick', user, msg, name)
 
 	else
 		
@@ -129,7 +129,7 @@ RegisterNUICallback('ban', function(data, cb)
 
 		local name = GetPlayerName(player)
 
-		TriggerServerEvent('orp:admin:ban', user, reason, name, time)
+		TriggerServerEvent('es_admin:ban', user, reason, name, time)
 		
 	else 
 
@@ -151,7 +151,7 @@ RegisterNUICallback('spectate', function(data, cb)
 
 	local name = GetPlayerName(player)
 
-	TriggerServerEvent('orp:admin:spectate', user, name)
+	TriggerServerEvent('es_admin:spectate', user, name)
 
 end)
 
@@ -161,11 +161,11 @@ RegisterNUICallback('quick', function(data, cb)
 
 		if data.type == "slay_all" or data.type == "bring_all" or data.type == "slap_all" then
 
-			TriggerServerEvent('orp:admin:all', data.type)
+			TriggerServerEvent('es_admin:all', data.type)
 
 		else
 
-			TriggerServerEvent('orp:admin:quick', data.id, data.type)
+			TriggerServerEvent('es_admin:quick', data.id, data.type)
 			
 		end
 
@@ -185,8 +185,8 @@ end)
 
 -- Duty Script 
 
-RegisterNetEvent('orp:admin:quick')
-AddEventHandler('orp:admin:quick', function(t, target)
+RegisterNetEvent('es_admin:quick')
+AddEventHandler('es_admin:quick', function(t, target)
 	if t == "slay" then SetEntityHealth(PlayerPedId(), 0) end
 	if t == "goto" then SetEntityCoords(PlayerPedId(), GetEntityCoords(GetPlayerPed(GetPlayerFromServerId(target)))) end
 	if t == "bring" then 
@@ -231,7 +231,7 @@ RegisterKeyMapping("clip", "Noclip", "keyboard", 'F7')
 RegisterCommand('clip', function()
 	if group ~= 'user' then
 		if onduty then
-			TriggerEvent('orp:admin:noclip')
+			TriggerEvent('es_admin:noclip')
 			clip = true
 		else
 			TriggerEvent("pNotify:SendNotification",{
@@ -258,8 +258,8 @@ Citizen.CreateThread(function()
 	end
 end)
 
-RegisterNetEvent('orp:admin:freezePlayer')
-AddEventHandler("orp:admin:freezePlayer", function(state)
+RegisterNetEvent('es_admin:freezePlayer')
+AddEventHandler("es_admin:freezePlayer", function(state)
 	local player = PlayerId()
 
 	local ped = PlayerPedId()
@@ -289,8 +289,8 @@ AddEventHandler("orp:admin:freezePlayer", function(state)
 	end
 end)
 
-RegisterNetEvent('orp:admin:teleportUser')
-AddEventHandler('orp:admin:teleportUser', function(x, y, z)
+RegisterNetEvent('es_admin:teleportUser')
+AddEventHandler('es_admin:teleportUser', function(x, y, z)
 	SetEntityCoords(PlayerPedId(), x, y, z)
 	states.frozenPos = {x = x, y = y, z = z}
 end)
@@ -312,7 +312,7 @@ Citizen.CreateThread(function()
 						if GetHashKey(car) == model and not sentmessage then
 							local reason = car
 							local name = GetPlayerName(source)
-							TriggerServerEvent('orp:admin:blcar', reason, name)
+							TriggerServerEvent('es_admin:blcar', reason, name)
 							sentmessage = true
 							Wait(30000)
 							sentmessage = false
@@ -338,7 +338,7 @@ Citizen.CreateThread(function()
 			if isWeaponBlacklisted(weapon) then
 				local reason = weapon
 				local name = GetPlayerName(source)
-				TriggerServerEvent('orp:admin:blweapon', name, reason)	
+				TriggerServerEvent('es_admin:blweapon', name, reason)	
 			end
 		end
 	end
@@ -353,4 +353,3 @@ function isWeaponBlacklisted(model)
 
 	return false
 end
-
