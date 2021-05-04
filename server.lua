@@ -255,7 +255,7 @@ AddEventHandler('es_admin2:quick', function(id, type)
 										title = 'Screenshot of player '..GetPlayerName(id).."\n\n"..identifier1.."\n\n"..identifier2.."\n\n"..identifier3.."\n\n"..identifier4.."\n\n"..identifier5,
 										
 										footer = {
-											text = "____________________\n\n[" .. os.date("%Y/%m/%d %X") .. "]\n\nMade By Known For Oasis RP",
+											text = "____________________\n\n[" .. os.date("%Y/%m/%d %X") .. "]\n\nMade By Known",
 										}
 									}
 								}
