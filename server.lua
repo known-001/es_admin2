@@ -38,7 +38,7 @@ end, true)
 function loadExistingPlayers()
 	TriggerEvent("es:getPlayers", function(curPlayers)
 		for k,v in pairs(curPlayers)do
-			TriggerClientEvent("es_admin2:setGroup", v.get('source'), v.get('group'))
+			TriggerClientEvent("es_admin:setGroup", v.get('source'), v.get('group'))
 		end
 	end)
 end
@@ -121,8 +121,8 @@ end)
 
 --! For New Kick System
 
-RegisterNetEvent('es_admin2:kick')
-AddEventHandler('es_admin2:kick', function(user, msg, name)
+RegisterNetEvent('es_admin:kick')
+AddEventHandler('es_admin:kick', function(user, msg, name)
 
 	local playerHex = GetPlayerIdentifier(source)
 
@@ -152,8 +152,8 @@ AddEventHandler('dropplayer', function(reason, user, time)
 
 end)
 
-RegisterNetEvent('es_admin2:ban')
-AddEventHandler('es_admin2:ban', function(name, reason, user, time)
+RegisterNetEvent('es_admin:ban')
+AddEventHandler('es_admin:ban', function(name, reason, user, time)
 
 	local playerHex = GetPlayerIdentifier(source)
 
@@ -209,8 +209,8 @@ AddEventHandler('es:incorrectAmountOfArguments', function(source, wantedArgument
 	end
 end)
 
-RegisterNetEvent('es_admin2:spectate')
-AddEventHandler('es_admin2:spectate', function(name, user)
+RegisterNetEvent('es_admin:spectate')
+AddEventHandler('es_admin:spectate', function(name, user)
 
 	local target = user
 
@@ -220,17 +220,17 @@ AddEventHandler('es_admin2:spectate', function(name, user)
 end)
 
 
-RegisterServerEvent('es_admin2:quick')
-AddEventHandler('es_admin2:quick', function(id, type)
+RegisterServerEvent('es_admin:quick')
+AddEventHandler('es_admin:quick', function(id, type)
 	local Source = source
 	TriggerEvent('es:getPlayerFromId', source, function(user)
 		TriggerEvent('es:getPlayerFromId', id, function(target)
 			TriggerEvent('es:canGroupTarget', user.getGroup(), groupsRequired[type], function(available)
 				TriggerEvent('es:canGroupTarget', user.getGroup(), target.getGroup(), function(canTarget)
 					if canTarget and available then
-						if type == "freeze" then TriggerClientEvent('es_admin2:quick', id, type) end
-						if type == "bring" then TriggerClientEvent('es_admin2:quick', id, type, Source) end
-						if type == "goto" then TriggerClientEvent('es_admin2:quick', Source, type, id) end
+						if type == "freeze" then TriggerClientEvent('es_admin:quick', id, type) end
+						if type == "bring" then TriggerClientEvent('es_admin:quick', id, type, Source) end
+						if type == "goto" then TriggerClientEvent('es_admin:quick', Source, type, id) end
 						if type == "screenshot" then
 							local identifier1 = GetPlayerIdentifiers(id)[1]
 							local identifier2 = GetPlayerIdentifiers(id)[2]
@@ -242,14 +242,14 @@ AddEventHandler('es_admin2:quick', function(id, type)
 								quality = 1
 							}    
 							exports['discord-screenshot']:requestCustomClientScreenshotUploadToDiscord(id, Config.Screenshotwebhook, screenshotOptions, {
-								username = 'es_admin2',
+								username = 'es_admin',
 								avatar_url = '',
 								content = '',
 								embeds = {
 									{
 										color = 16711680,
 										author = {
-											name = 'es_admin2',
+											name = 'es_admin',
 											icon_url = ''
 										},
 										title = 'Screenshot of player '..GetPlayerName(id).."\n\n"..identifier1.."\n\n"..identifier2.."\n\n"..identifier3.."\n\n"..identifier4.."\n\n"..identifier5,
@@ -277,7 +277,7 @@ AddEventHandler('es_admin2:quick', function(id, type)
 								end
 							end
 
-							DropPlayer(id, GetConvar("es_admin2_banreason", "You were banned from this server"))
+							DropPlayer(id, GetConvar("es_admin_banreason", "You were banned from this server"))
 						end
 					else
 						if not available then
@@ -297,11 +297,11 @@ AddEventHandler('es_admin2:quick', function(id, type)
 end)
 
 AddEventHandler('es:playerLoaded', function(Source, user)
-	TriggerClientEvent('es_admin2:setGroup', Source, user.getGroup())
+	TriggerClientEvent('es_admin:setGroup', Source, user.getGroup())
 end)
 
-RegisterServerEvent('es_admin2:set')
-AddEventHandler('es_admin2:set', function(t, USER, GROUP)
+RegisterServerEvent('es_admin:set')
+AddEventHandler('es_admin:set', function(t, USER, GROUP)
 	local Source = source
 	TriggerEvent('es:getPlayerFromId', source, function(user)
 		TriggerEvent('es:canGroupTarget', user.getGroup(), "admin", function(available)
@@ -315,7 +315,7 @@ AddEventHandler('es_admin2:set', function(t, USER, GROUP)
 					TriggerEvent("es:getAllGroups", function(groups)
 						if(groups[GROUP])then
 							TriggerEvent("es:setPlayerData", USER, "group", GROUP, function(response, success)
-								TriggerClientEvent('es_admin2:setGroup', USER, GROUP)
+								TriggerClientEvent('es_admin:setGroup', USER, GROUP)
 								TriggerClientEvent('chat:addMessage', -1, {
 									args = {"^1CONSOLE", "Group of ^2^*" .. GetPlayerName(tonumber(USER)) .. "^r^0 has been set to ^2^*" .. GROUP}
 								})
@@ -453,12 +453,12 @@ RegisterCommand('setgroup', function(source, args, raw)
 	end
 end, true)
 
-RegisterNetEvent('es_admin2:AdminPlayerList')
-AddEventHandler('es_admin2:AdminPlayerList',function()
+RegisterNetEvent('es_admin:AdminPlayerList')
+AddEventHandler('es_admin:AdminPlayerList',function()
 	local xPlayers = ESX.GetPlayers()
 	for i = 1, #xPlayers, 1 do
 		local thePlayer = GetPlayerName(xPlayers[i])
-		TriggerClientEvent('es_admin2:AdminPlayerList',source, thePlayer,xPlayers[i])
+		TriggerClientEvent('es_admin:AdminPlayerList',source, thePlayer,xPlayers[i])
 	end
 end)
 
@@ -571,7 +571,7 @@ end, {help = "Report a player or an issue", params = {{name = "report", help = "
 
 -- Noclip
 TriggerEvent('es:addGroupCommand', 'noclip', "admin", function(source, args, user)
-	TriggerClientEvent("es_admin2:noclip", source)
+	TriggerClientEvent("es_admin:noclip", source)
 end, function(source, args, user)
 	TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Insufficienct permissions!"} })
 end, {help = "Enable or disable noclip"})
@@ -633,7 +633,7 @@ TriggerEvent('es:addGroupCommand', 'freeze', "mod", function(source, args, user)
 					frozen[player] = true
 				end
 
-				TriggerClientEvent('es_admin2:freezePlayer', player, frozen[player])
+				TriggerClientEvent('es_admin:freezePlayer', player, frozen[player])
 
 				local state = "unfrozen"
 				if(frozen[player])then
@@ -662,7 +662,7 @@ TriggerEvent('es:addGroupCommand', 'bring', "mod", function(source, args, user)
 			-- User permission check
 			TriggerEvent("es:getPlayerFromId", player, function(target)
 
-				TriggerClientEvent('es_admin2:teleportUser', target.get('source'), user.getCoords().x, user.getCoords().y, user.getCoords().z)
+				TriggerClientEvent('es_admin:teleportUser', target.get('source'), user.getCoords().x, user.getCoords().y, user.getCoords().z)
 
 				TriggerClientEvent('chat:addMessage', player, { args = {"^1SYSTEM", "You have brought by ^2" .. GetPlayerName(source)} })
 				TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Player ^2" .. GetPlayerName(player) .. "^0 has been brought"} })
@@ -686,7 +686,7 @@ TriggerEvent('es:addGroupCommand', 'slap', "admin", function(source, args, user)
 			-- User permission check
 			TriggerEvent("es:getPlayerFromId", player, function(target)
 
-				TriggerClientEvent('es_admin2:slap', player)
+				TriggerClientEvent('es_admin:slap', player)
 
 				TriggerClientEvent('chat:addMessage', player, { args = {"^1SYSTEM", "You have slapped by ^2" .. GetPlayerName(source)} })
 				TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Player ^2" .. GetPlayerName(player) .. "^0 has been slapped"} })
@@ -711,7 +711,7 @@ TriggerEvent('es:addGroupCommand', 'goto', "mod", function(source, args, user)
 			TriggerEvent("es:getPlayerFromId", player, function(target)
 				if(target)then
 
-					TriggerClientEvent('es_admin2:teleportUser', source, target.getCoords().x, target.getCoords().y, target.getCoords().z)
+					TriggerClientEvent('es_admin:teleportUser', source, target.getCoords().x, target.getCoords().y, target.getCoords().z)
 
 					TriggerClientEvent('chat:addMessage', player, { args = {"^1SYSTEM", "You have been teleported to by ^2" .. GetPlayerName(source)} })
 					TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Teleported to player ^2" .. GetPlayerName(player) .. ""} })
@@ -729,7 +729,7 @@ end, {help = "Teleport to a user", params = {{name = "userid", help = "The ID of
 
 -- Kill yourself
 TriggerEvent('es:addCommand', 'die', function(source, args, user)
-	TriggerClientEvent('es_admin2:kill', source)
+	TriggerClientEvent('es_admin:kill', source)
 	TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "You killed yourself"} })
 end, {help = "Suicide"})
 
@@ -742,7 +742,7 @@ TriggerEvent('es:addGroupCommand', 'slay', "admin", function(source, args, user)
 			-- User permission check
 			TriggerEvent("es:getPlayerFromId", player, function(target)
 
-				TriggerClientEvent('es_admin2:kill', player)
+				TriggerClientEvent('es_admin:kill', player)
 
 				TriggerClientEvent('chat:addMessage', player, { args = {"^1SYSTEM", "You have been killed by ^2" .. GetPlayerName(source)} })
 				TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Player ^2" .. GetPlayerName(player) .. "^0 has been killed."} })
@@ -766,7 +766,7 @@ TriggerEvent('es:addGroupCommand', 'crash', "superadmin", function(source, args,
 			-- User permission check
 			TriggerEvent("es:getPlayerFromId", player, function(target)
 
-				TriggerClientEvent('es_admin2:crash', player)
+				TriggerClientEvent('es_admin:crash', player)
 
 				TriggerClientEvent('chat:addMessage', source, { args = {"^1SYSTEM", "Player ^2" .. GetPlayerName(player) .. "^0 has been crashed."} })
 			end)
@@ -797,8 +797,8 @@ loadBans()
 
 
 -- Anticheat
-RegisterNetEvent('es_admin2:blcar')
-AddEventHandler('es_admin2:blcar', function(name, reason)
+RegisterNetEvent('es_admin:blcar')
+AddEventHandler('es_admin:blcar', function(name, reason)
 
 	local playerHex = GetPlayerIdentifier(source)
 
@@ -816,8 +816,8 @@ AddEventHandler('es_admin2:blcar', function(name, reason)
 
 end)
 
-RegisterNetEvent('es_admin2:blweapon')
-AddEventHandler('es_admin2:blweapon', function(name, reason)
+RegisterNetEvent('es_admin:blweapon')
+AddEventHandler('es_admin:blweapon', function(name, reason)
 
 	local playerHex = GetPlayerIdentifier(source)
 
