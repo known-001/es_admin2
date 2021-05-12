@@ -1,4 +1,4 @@
-# es_admin2
+# es_admin2 onesync only
 A updated and better version of es_admin2
 
 ## Download & Installation
