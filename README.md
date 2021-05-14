@@ -1,7 +1,10 @@
-# es_admin2 onesync only
+# es_admin2
 A updated and better version of es_admin2
 
 ## Download & Installation
+
+## Installation
+- Once you have installed go to the config and change the onesync settings to fit your server, Plus add your webhooks.
 
 ### Using [fvm](https://github.com/qlaffont/fvm-installer)
 ```
