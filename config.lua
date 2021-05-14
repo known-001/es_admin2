@@ -1,5 +1,8 @@
 Config              = {}
 
+--If you have onesync on then set this to true else set it to false
+Config.Onesync = true
+
 Config.Kickwebhook  = "" -- kick webhook
 
 Config.Banwebhook  = "" -- Ban webhook
@@ -17,5 +20,3 @@ Config.Blcars = {
 Config.Blweapons = {
     'WEAPON_SMG'
 }
-
-Config.Noclipkey = 168

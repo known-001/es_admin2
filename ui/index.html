@@ -12,7 +12,7 @@
 			$(document).keyup(function (e) {
 				if (e.keyCode == 27) {
 					$("#admin").fadeOut();
-					$.post('http://orp-admin/close', JSON.stringify({}));
+					$.post('http://es_admin2/close', JSON.stringify({}));
 				}
 			});
 
@@ -47,7 +47,7 @@
 
 			$("#close").click(() => {
 				$("#admin").fadeOut();
-				$.post('http://orp-admin/close', JSON.stringify({}));
+				$.post('http://es_admin2/close', JSON.stringify({}));
 			});
 
 			$("#select_users").click(() => {
@@ -66,17 +66,17 @@
 				$("#select_server").blur();
 			});
 
-			$("#freeze").click(function () { $.post('http://orp-admin/quick', JSON.stringify({ id: selected, type: 'freeze' })); $(this).blur(); });
-			$("#bring").click(function () { $.post('http://orp-admin/quick', JSON.stringify({ id: selected, type: 'bring' })); $(this).blur(); });
-			$("#duty").click(function () { $.post('http://orp-admin/duty', JSON.stringify({ id: selected, type: 'duty' })); $(this).blur(); });
-			$("#goto").click(function () { $.post('http://orp-admin/quick', JSON.stringify({ id: selected, type: 'goto' })); $(this).blur(); });
-			$("#spectate").click(function () { $.post('http://orp-admin/quick', JSON.stringify({ id: selected, type: 'spectate' })); $(this).blur(); });
-			$("#screenshot").click(function () { $.post('http://orp-admin/quick', JSON.stringify({ id: selected, type: 'screenshot' })); $(this).blur(); });
-			$("#setgroup").click(function () { $.post('http://orp-admin/set', JSON.stringify({ user: selected, type: 'group', param: $("#newgroup").val() })); $(this).blur(); });
-			$("#setlevel").click(function () { $.post('http://orp-admin/set', JSON.stringify({ user: selected, type: 'level', param: $("#newlevel").val() })); $(this).blur(); });
-			$("#setmoney").click(function () { $.post('http://orp-admin/set', JSON.stringify({ user: selected, type: 'money', param: $("#newmoney").val() })); $(this).blur(); });
-			$("#kick").click(function () { $.post('http://orp-admin/kick', JSON.stringify({ user: selected, type: 'money', param: $("#kickreason").val() })); $(this).blur(); });
-			$("#setban").click(function () { $.post('http://orp-admin/ban', JSON.stringify({ user: selected, type: 'kick', param: $("#banreason").val(), length: $("#bantime").val() })); $(this).blur(); });
+			$("#freeze").click(function () { $.post('http://es_admin2/quick', JSON.stringify({ id: selected, type: 'freeze' })); $(this).blur(); });
+			$("#bring").click(function () { $.post('http://es_admin2/quick', JSON.stringify({ id: selected, type: 'bring' })); $(this).blur(); });
+			$("#duty").click(function () { $.post('http://es_admin2/duty', JSON.stringify({ id: selected, type: 'duty' })); $(this).blur(); });
+			$("#goto").click(function () { $.post('http://es_admin2/quick', JSON.stringify({ id: selected, type: 'goto' })); $(this).blur(); });
+			$("#spectate").click(function () { $.post('http://es_admin2/quick', JSON.stringify({ id: selected, type: 'spectate' })); $(this).blur(); });
+			$("#screenshot").click(function () { $.post('http://es_admin2/quick', JSON.stringify({ id: selected, type: 'screenshot' })); $(this).blur(); });
+			$("#setgroup").click(function () { $.post('http://es_admin2/set', JSON.stringify({ user: selected, type: 'group', param: $("#newgroup").val() })); $(this).blur(); });
+			$("#setlevel").click(function () { $.post('http://es_admin2/set', JSON.stringify({ user: selected, type: 'level', param: $("#newlevel").val() })); $(this).blur(); });
+			$("#setmoney").click(function () { $.post('http://es_admin2/set', JSON.stringify({ user: selected, type: 'money', param: $("#newmoney").val() })); $(this).blur(); });
+			$("#kick").click(function () { $.post('http://es_admin2/kick', JSON.stringify({ user: selected, type: 'money', param: $("#kickreason").val() })); $(this).blur(); });
+			$("#setban").click(function () { $.post('http://es_admin2/ban', JSON.stringify({ user: selected, type: 'kick', param: $("#banreason").val(), length: $("#bantime").val() })); $(this).blur(); });
 
 			$('button').click(function () { $(this).blur(); });
 		});

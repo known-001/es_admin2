@@ -37,10 +37,15 @@ end)
 
 RegisterCommand("adminpanel",function()
 	if group ~= "user" then
-		TriggerServerEvent('es_admin:AdminPlayerList') -- populates table
-		Citizen.Wait(1000)
-	   SetNuiFocus(true, true)
-	   SendNUIMessage({type = 'open', players = players})
+		if Config.Onesync then
+			TriggerServerEvent('es_admin:AdminPlayerList') -- populates table
+			Citizen.Wait(1000)
+			SetNuiFocus(true, true)
+			SendNUIMessage({type = 'open', players = players})
+		elseif not Config.Onesync then
+			SetNuiFocus(true, true)
+			SendNUIMessage({type = 'open', players = getPlayers()})
+		end
 	end
 end,false)
 
@@ -294,6 +299,14 @@ AddEventHandler('es_admin:teleportUser', function(x, y, z)
 	SetEntityCoords(PlayerPedId(), x, y, z)
 	states.frozenPos = {x = x, y = y, z = z}
 end)
+
+function getPlayers()
+    local players = {}
+    for _, player in ipairs(GetActivePlayers()) do
+        table.insert(players, {id = GetPlayerServerId(player), name = GetPlayerName(player)})
+    end
+    return players
+end
 
 -- Start of anticheat
 
