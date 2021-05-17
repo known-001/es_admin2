@@ -89,10 +89,6 @@ RegisterNUICallback('close', function(data, cb)
 	players = {}
 end)
 
-RegisterCommand('load_group', function(source)
-	TriggerEvent('es_admin:setGroup')
-end)
-
 RegisterNUICallback('set', function(data, cb)
 	TriggerServerEvent('es_admin:set', data.type, data.user, data.param)
 end)
