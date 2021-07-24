@@ -20,4 +20,3 @@ files {
 }
 
 dependency 'essentialmode'
-client_script "@Badger-Anticheat/acloader.lua"
